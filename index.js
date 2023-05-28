@@ -1,11 +1,11 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
-const shapes = require('./lib/shapes.js')
+const {Circle, Triangle, Square} = require('./lib/shapes.js')
 
 function init() {inquirer.prompt([
     {
         type: 'input',
-        name: 'logo',
+        name: 'logoName',
         message: 'Please enter letters for the logo, please use no more than 3'
     },{
         type: 'list',
@@ -14,9 +14,15 @@ function init() {inquirer.prompt([
         choices: ["circle", 'triangle', 'square'],
     },{
         type: 'input',
-        name: 'colour',
-        message: 'Please enter a colour of your choice, using either its name or hexidecimal code'
-    },
-]
-)}
+        name: 'shapeColour',
+        message: 'Please choose a colour for your logo shape, then enter it in hexidecimal code or in CSS keyword'
+    },{
+        type: "input",
+        name: "textColour",
+        message: "Please choose a colour for your logo text, then enter it in hexidecimal code or in CSS keyword"
+    }
+]).then(answers => {
+    console.log(answers)})
+}
 init()
+
