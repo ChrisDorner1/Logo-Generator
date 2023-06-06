@@ -44,15 +44,10 @@ function createShape(shapes, shapeColour) {
 function init() {
     inquirer.prompt(questions)
         .then((answers) => {
-                // if (answers.logoName.length < 1 || answers.logoName.length > 3) {
-                //         console.log('You may only use between 1 and 3 characters')
-                //         init()
-                //     } else{
-                //         const writeData = JSON.stringify(answers)
-
-                //             fs.writeFile('logo.svg', writeData, err => err ? console.log(err): console.log('success'))
-                //         }
-            if (answers.shapes === "Square") {
+                if (answers.logoName.length < 1 || answers.logoName.length > 3) {
+                        console.log('You may only use between 1 and 3 characters')
+                        init() 
+            } else if (answers.shapes === "Square") {
                 const square = new Square(answers.shapeColour, answers.textColour, answers.logoName)
                 fs.writeFile('./examples/square.svg', square.render(answers.shapeColour, answers.textColour, answers.logoName),  err => err ? console.log(err): console.log('success'))
             }else if (answers.shapes === "Triangle"){
